@@ -1,12 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+// import HomeView from "../views/HomeView.vue";
+import LoginView from "../views/LoginView.vue";
+import DashboardView from "../views/DashboardView.vue";
+import CallDetailView from "../views/CallDetailView.vue";
 
 const routes = [
-  {
-    path: "/",
-    name: "home",
-    component: HomeView,
-  },
+  // {
+  //   path: "/",
+  //   name: "home",
+  //   component: HomeView,
+  // },
   {
     path: "/about",
     name: "about",
@@ -15,6 +18,23 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: LoginView,
+  },
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: DashboardView,
+    props: (route) => ({ offset: parseInt(route.query.offset) || 0 }),
+  },
+  {
+    path: "/dashboard/calls/:id",
+    name: "call-detail",
+    component: CallDetailView,
+    props: true,
   },
 ];
 
